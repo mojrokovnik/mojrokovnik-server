@@ -1,68 +1,56 @@
-Symfony Standard Edition
+Mojrokovnik Server Repo
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Welcome to the Mojrokovnik Server Repository. This is part of Mojrokovnik Project
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+1) Installation:
+----------------------------------
 
-What's inside?
---------------
+Clone `mojrokovnik-server` repo inside mojrokovnik folder on your local machine
 
-The Symfony Standard Edition is configured with the following defaults:
+Run installation
 
-  * An AppBundle you can use to start coding;
+    php composer install
 
-  * Twig as the only configured template engine;
+Update database schema 
 
-  * Doctrine ORM/DBAL;
+    php bin/console doctrine:schema:update --force
 
-  * Swiftmailer;
+Create initial user
 
-  * Annotations enabled for everything.
+    php app/console fos:user:create
 
-It comes pre-configured with the following bundles:
+Create application client
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+    php app/console app:create-client
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+Run application
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+    php bin/console server:run
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+2) Test application
+----------------------------------
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+Before starting coding, make sure that your local system is properly configured for Symfony.
+  
+    php app/check.php
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+3) Mojrokovnik server comes pre-configured with the following bundles:
+----------------------------------
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+  * FrameworkBundle - The core Symfony framework bundle
 
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
+  * FOSRestBundle - Adds rest functionality
 
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+  * FOSUserBundle - Adds support for a database-backed user system in Symfony2
 
-All libraries and bundles included in the Symfony Standard Edition are
+  * FOSOAuthServerBundle - Symfony2 OAuth Server Bundle
+
+  * JMSSerializerBundle - This bundle integrates the serializer library into Symfony2.
+
+  * NelmioApiDocBundle - This bundle allows you to generate a decent documentation for your APIs.
+
+All libraries and bundles included in the Symfony Standard Edition and Mojrokovnik Edition are
 released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.0/book/installation.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.0/book/doctrine.html
-[8]:  https://symfony.com/doc/3.0/book/templating.html
-[9]:  https://symfony.com/doc/3.0/book/security.html
-[10]: https://symfony.com/doc/3.0/cookbook/email.html
-[11]: https://symfony.com/doc/3.0/cookbook/logging/monolog.html
-[13]: https://symfony.com/doc/3.0/bundles/SensioGeneratorBundle/index.html
