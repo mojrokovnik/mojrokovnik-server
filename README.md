@@ -52,5 +52,7 @@ Before starting coding, make sure that your local system is properly configured 
 
   * NelmioApiDocBundle - This bundle allows you to generate a decent documentation for your APIs.
 
+  * NelmioCorsBundle - The NelmioCorsBundle allows you to send Cross-Origin Resource Sharing headers with ACL-style per-URL configuration.
+
 All libraries and bundles included in the Symfony Standard Edition and Mojrokovnik Edition are
 released under the MIT or BSD license.
