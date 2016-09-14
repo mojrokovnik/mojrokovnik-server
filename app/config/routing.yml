@@ -5,6 +5,6 @@ NelmioApiDocBundle:
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
-demos:
+users:
     type: rest
-    resource: AppBundle\Controller\DemoController
+    resource: AppBundle\Controller\UserController
