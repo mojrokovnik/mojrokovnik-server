@@ -8,3 +8,13 @@ fos_oauth_server_token:
 users:
     type: rest
     resource: AppBundle\Controller\UserController
+
+clients_individual:
+    type: rest
+    prefix: /clients
+    resource: AppBundle\Controller\IndividualClientController
+
+clients_legal: 
+    type: rest
+    prefix: /clients
+    resource: AppBundle\Controller\LegalClientController

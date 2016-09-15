@@ -16,13 +16,17 @@ Update database schema
 
     php bin/console doctrine:schema:update --force
 
+Genereting Getters and Setters
+
+    php bin/console doctrine:generate:entities AppBundle/Entity/Product
+
 Create initial user
 
-    php app/console fos:user:create
+    php bin/console fos:user:create
 
 Create application client
 
-    php app/console app:create-client
+    php bin/console app:create-client
 
 Run application
 
