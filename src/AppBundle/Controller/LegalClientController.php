@@ -25,7 +25,7 @@ class LegalClientController extends FOSRestController {
                 ->getAll('AppBundle:LegalClient', $this->getLoggedUser());
 
         if (!$client) {
-            throw new HttpException(404, "There is no clients for particular user");
+            throw new HttpException(204, "There is no clients for particular user");
         }
 
         return $this->handleView($this->view($client));
@@ -44,7 +44,7 @@ class LegalClientController extends FOSRestController {
      */
     public function getLegalAction($id) {
         $client = $this->getBaseManager()
-                ->getAll('AppBundle:LegalClient', $id);
+                ->get('AppBundle:LegalClient', $id, $this->getLoggedUser());
 
         if (!$client) {
             throw new HttpException(404, "Client not exist!");

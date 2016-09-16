@@ -25,7 +25,7 @@ class CasesController extends FOSRestController {
                 ->getAll('AppBundle:Cases', $this->getLoggedUser());
 
         if (!$client) {
-            throw new HttpException(404, "There is no cases for particular user");
+            throw new HttpException(204, "There is no cases for particular user");
         }
 
         return $this->handleView($this->view($client));
@@ -44,7 +44,7 @@ class CasesController extends FOSRestController {
      */
     public function getCaseAction($id) {
         $client = $this->getBaseManager()
-                ->getAll('AppBundle:Cases', $id);
+                ->get('AppBundle:Cases', $id, $this->getLoggedUser());
 
         if (!$client) {
             throw new HttpException(404, "Case not exist!");

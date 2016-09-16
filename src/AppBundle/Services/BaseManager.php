@@ -20,9 +20,11 @@ class BaseManager {
      * 
      */
     public function getAll($repo, $user) {
-        return $this->em
-                        ->getRepository($repo)
-                        ->findByUser($user);
+        $obj = $this->em
+                ->getRepository($repo)
+                ->findByUser($user);
+
+        return $obj;
     }
 
     /**
@@ -34,10 +36,16 @@ class BaseManager {
      * @retun {Object} Data
      * 
      */
-    public function get($repo, $id) {
-        return $$this->em
-                        ->getRepository($repo)
-                        ->find($id);
+    public function get($repo, $id, $user) {
+        $obj = $this->em
+                ->getRepository($repo)
+                ->find($id);
+
+        if ($user->getId() !== $obj->getUser()->getId()) {
+            return 401;
+        }
+
+        return $obj;
     }
 
     /**
@@ -97,14 +105,38 @@ class BaseManager {
     }
 
     /**
-     * Deleting data from database
+     * Deactivating data in database
      * 
-     * @param $repo Name of repo whete to look
+     * @param $repo Name of repo where to look
      * @param $id Identifier
      * @param $user Currently logged user
      * 
      */
     public function delete($repo, $id, $user) {
+        $obj = $this->em->getRepository($repo)->find($id);
+
+        if (!$obj) {
+            return 404;
+        }
+
+        if ($user->getId() !== $obj->getUser()->getId()) {
+            return 401;
+        }
+
+        $obj->setActive(0);
+
+        $this->em->flush();
+    }
+
+    /**
+     * Deleting data from database
+     * 
+     * @param $repo Name of repo where to look
+     * @param $id Identifier
+     * @param $user Currently logged user
+     * 
+     */
+    public function hardDelete($repo, $id, $user) {
         $obj = $this->em->getRepository($repo)->find($id);
 
         if (!$obj) {
