@@ -158,9 +158,7 @@ class IndividualClientController extends FOSRestController {
      * @return {obj} User
      */
     protected function getLoggedUser() {
-        return $this->get('security.token_storage')
-                        ->getToken()
-                        ->getUser();
+        return $this->get('security.token_storage')->getToken()->getUser();
     }
 
 }

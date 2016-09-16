@@ -18,3 +18,7 @@ clients_legal:
     type: rest
     prefix: /clients
     resource: AppBundle\Controller\LegalClientController
+    
+cases:
+    type: rest
+    resource: AppBundle\Controller\CasesController

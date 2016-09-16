@@ -2,70 +2,70 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\LegalClient;
+use AppBundle\Entity\Cases;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class LegalClientController extends FOSRestController {
+class CasesController extends FOSRestController {
 
     /**
-     * Get all legal clients from currently logged user
+     * Get all cases from currently logged user
      * 
-     * Path: /clients/legals
+     * Path: /cases
      * Method; GET
      * 
-     * @return {json} Legal clients
+     * @return {json} List of cases
      * 
      * @throws NotFoundHttpException when there is no clients in database
      */
-    public function getLegalsAction() {
+    public function getCasesAction() {
         $client = $this->getBaseManager()
-                ->getAll('AppBundle:LegalClient', $this->getLoggedUser());
+                ->getAll('AppBundle:Cases', $this->getLoggedUser());
 
         if (!$client) {
-            throw new HttpException(404, "There is no clients for particular user");
+            throw new HttpException(404, "There is no cases for particular user");
         }
 
         return $this->handleView($this->view($client));
     }
 
     /**
-     * Get specific legal clients requested by ID
+     * Get specific case requested by ID
      * 
-     * Path: /clients/legals/{id}
+     * Path: /cases/{id}
      * Method: GET
      * 
-     * @param {int} $id Client identifier
-     * @return {json} Legal clients requested by ID
+     * @param {int} $id Case identifier
+     * @return {json} Case requested by ID
      * 
      * @throws NotFoundHttpException when requested client doesn't exist
      */
-    public function getLegalAction($id) {
+    public function getCaseAction($id) {
         $client = $this->getBaseManager()
-                ->getAll('AppBundle:LegalClient', $id);
+                ->getAll('AppBundle:Cases', $id);
 
         if (!$client) {
-            throw new HttpException(404, "Client not exist!");
+            throw new HttpException(404, "Case not exist!");
         }
 
         return $this->handleView($this->view($client));
     }
 
     /**
-     * Add new legal client in database
+     * Add new case in database
      * 
-     * Path: /clients/legals
+     * Path: /cases
      * Method: POST
      * 
      * @param {obj} $request Request object
      * @return {json} Status
      * 
      */
-    public function postLegalAction(Request $request) {
+    public function postCaseAction(Request $request) {
         $data = $request->request->all();
-        $client = new LegalClient();
+        $client = new Cases();
 
         $result = $this->getBaseManager()
                 ->set($client, $data, $this->getLoggedUser());
@@ -73,33 +73,33 @@ class LegalClientController extends FOSRestController {
         $view = array(
             'status' => 200,
             'client_id' => $result->getId(),
-            'message' => 'New client added to database!'
+            'message' => 'New case added to database!'
         );
 
         return $this->handleView($this->view($view));
     }
 
     /**
-     * Update specific legal clients
+     * Update specific case
      * 
-     * Path: /clients/legals/{id}
+     * Path: /cases/{id}
      * Method: PUT
      * 
-     * @param {int} $id Client identifier
+     * @param {int} $id Case identifier
      * @param {obj} $request Request object
      * @return {json} Status
      * 
-     * @throws NotFoundHttpException when requested client doesn't exist
-     * @throws AccessDeniedException when user missmatch one defined in client
+     * @throws NotFoundHttpException when requested case doesn't exist
+     * @throws AccessDeniedException when user missmatch one defined in case
      */
-    public function putLegalAction($id, Request $request) {
+    public function putCaseAction($id, Request $request) {
         $data = $request->request->all();
 
         $result = $this->getBaseManager()
-                ->update($data, 'AppBundle:LegalClient', $id, $this->getLoggedUser());
+                ->update($data, 'AppBundle:Cases', $id, $this->getLoggedUser());
 
         if ($result === 404) {
-            throw new HttpException(404, "Client with id " . $id . " not found!");
+            throw new HttpException(404, "Case with id " . $id . " not found!");
         } else if ($result === 401) {
             throw new AccessDeniedException();
         }
@@ -114,30 +114,30 @@ class LegalClientController extends FOSRestController {
     }
 
     /**
-     * Delete specific legal clients
+     * Delete specific case
      * 
-     * Path: /clients/legals/{id}
+     * Path: /cases/{id}
      * Method: DELETE
      * 
-     * @param {int} $id Client identifier
+     * @param {int} $id Case identifier
      * @return {json} Status
      * 
-     * @throws NotFoundHttpException when requested client doesn't exist
-     * @throws AccessDeniedException when user missmatch one defined in client
+     * @throws NotFoundHttpException when requested case doesn't exist
+     * @throws AccessDeniedException when user missmatch one defined in case
      */
-    public function deleteLegalAction($id) {
+    public function deleteCaseAction($id) {
         $result = $this->getBaseManager()
-                ->delete('AppBundle:LegalClient', $id, $this->getLoggedUser());
+                ->delete('AppBundle:Cases', $id, $this->getLoggedUser());
 
         if ($result === 404) {
-            throw new HttpException(404, "Client with id " . $id . " not found!");
+            throw new HttpException(404, "Case with id " . $id . " not found!");
         } else if ($result === 401) {
             throw new AccessDeniedException();
         }
 
         $view = array(
             'status' => 200,
-            'message' => 'Client successfully deleted!'
+            'message' => 'Case successfully deleted!'
         );
 
         return $this->handleView($this->view($view));

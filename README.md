@@ -16,7 +16,7 @@ Update database schema
 
     php bin/console doctrine:schema:update --force
 
-Genereting Getters and Setters
+Generate Getters and Setters
 
     php bin/console doctrine:generate:entities AppBundle/Entity/Product
 
