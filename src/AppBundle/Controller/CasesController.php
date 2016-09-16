@@ -72,7 +72,7 @@ class CasesController extends FOSRestController {
 
         $view = array(
             'status' => 200,
-            'client_id' => $result->getId(),
+            'client' => $result,
             'message' => 'New case added to database!'
         );
 

@@ -72,7 +72,7 @@ class LegalClientController extends FOSRestController {
 
         $view = array(
             'status' => 200,
-            'client_id' => $result->getId(),
+            'client' => $result,
             'message' => 'New client added to database!'
         );
 
