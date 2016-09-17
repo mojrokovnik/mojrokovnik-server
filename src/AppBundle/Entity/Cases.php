@@ -540,50 +540,6 @@ class Cases {
     }
 
     /**
-     * Set clientIndividual
-     *
-     * @param \AppBundle\Entity\Clients $clientIndividual
-     *
-     * @return Cases
-     */
-    public function setClientIndividual(\AppBundle\Entity\Clients $clientIndividual = null) {
-        $this->client_individual = $clientIndividual;
-
-        return $this;
-    }
-
-    /**
-     * Get clientIndividual
-     *
-     * @return \AppBundle\Entity\Clients
-     */
-    public function getClientIndividual() {
-        return $this->client_individual;
-    }
-
-    /**
-     * Set clientLegal
-     *
-     * @param \AppBundle\Entity\ClientsLegal $clientLegal
-     *
-     * @return Cases
-     */
-    public function setClientLegal(\AppBundle\Entity\ClientsLegal $clientLegal = null) {
-        $this->client_legal = $clientLegal;
-
-        return $this;
-    }
-
-    /**
-     * Get clientLegal
-     *
-     * @return \AppBundle\Entity\ClientsLegal
-     */
-    public function getClientLegal() {
-        return $this->client_legal;
-    }
-
-    /**
      * Set values dinamicaly
      *
      * @return integer
@@ -595,4 +551,47 @@ class Cases {
         }
     }
 
+    /**
+     * Set clientIndividual
+     *
+     * @param \AppBundle\Entity\IndividualClient $clientIndividual
+     *
+     * @return Cases
+     */
+    public function setClientIndividual(\AppBundle\Entity\IndividualClient $clientIndividual = null) {
+        $this->client_individual = $clientIndividual;
+
+        return $this;
+    }
+
+    /**
+     * Get clientIndividual
+     *
+     * @return \AppBundle\Entity\IndividualClient
+     */
+    public function getClientIndividual() {
+        return $this->client_individual;
+    }
+
+    /**
+     * Set clientLegal
+     *
+     * @param \AppBundle\Entity\LegalClient $clientLegal
+     *
+     * @return Cases
+     */
+    public function setClientLegal(\AppBundle\Entity\LegalClient $clientLegal = null) {
+        $this->client_legal = $clientLegal;
+
+        return $this;
+    }
+
+    /**
+     * Get clientLegal
+     *
+     * @return \AppBundle\Entity\LegalClient
+     */
+    public function getClientLegal() {
+        return $this->client_legal;
+    }
 }

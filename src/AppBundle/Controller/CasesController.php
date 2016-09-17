@@ -21,14 +21,14 @@ class CasesController extends FOSRestController {
      * @throws NotFoundHttpException when there is no clients in database
      */
     public function getCasesAction() {
-        $client = $this->getBaseManager()
+        $case = $this->getBaseManager()
                 ->getAll('AppBundle:Cases', $this->getLoggedUser());
 
-        if (!$client) {
+        if (!$case) {
             throw new HttpException(204, "There is no cases for particular user");
         }
 
-        return $this->handleView($this->view($client));
+        return $this->handleView($this->view($case));
     }
 
     /**
@@ -43,14 +43,14 @@ class CasesController extends FOSRestController {
      * @throws NotFoundHttpException when requested client doesn't exist
      */
     public function getCaseAction($id) {
-        $client = $this->getBaseManager()
+        $case = $this->getBaseManager()
                 ->get('AppBundle:Cases', $id, $this->getLoggedUser());
 
-        if (!$client) {
+        if (!$case) {
             throw new HttpException(404, "Case not exist!");
         }
 
-        return $this->handleView($this->view($client));
+        return $this->handleView($this->view($case));
     }
 
     /**
@@ -65,14 +65,30 @@ class CasesController extends FOSRestController {
      */
     public function postCaseAction(Request $request) {
         $data = $request->request->all();
-        $client = new Cases();
+        $case = new Cases();
+
+        if (isset($data['client_individual'])) {
+            $client = $this->getBaseManager()
+                    ->get('AppBundle:IndividualClient', $data['client_individual'], $this->getLoggedUser());
+
+            unset($data['client_individual']);
+            $case->setClientIndividual($client);
+        }
+
+        if (isset($data['client_legal'])) {
+            $client = $this->getBaseManager()
+                    ->get('AppBundle:LegalClient', $data['client_legal'], $this->getLoggedUser());
+
+            unset($data['client_legal']);
+            $case->setClientLegal($client);
+        }
 
         $result = $this->getBaseManager()
-                ->set($client, $data, $this->getLoggedUser());
+                ->set($case, $data, $this->getLoggedUser());
 
         $view = array(
             'status' => 200,
-            'client' => $result,
+            'cases' => $result,
             'message' => 'New case added to database!'
         );
 
@@ -95,6 +111,9 @@ class CasesController extends FOSRestController {
     public function putCaseAction($id, Request $request) {
         $data = $request->request->all();
 
+        unset($data['client_individual']);
+        unset($data['client_legal']);
+
         $result = $this->getBaseManager()
                 ->update($data, 'AppBundle:Cases', $id, $this->getLoggedUser());
 
@@ -106,7 +125,7 @@ class CasesController extends FOSRestController {
 
         $view = array(
             'status' => 200,
-            'client_id' => $result->getId(),
+            'case_id' => $result->getId(),
             'message' => 'Client updated!'
         );
 

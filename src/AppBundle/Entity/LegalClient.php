@@ -493,28 +493,6 @@ class LegalClient {
     }
 
     /**
-     * Set attorney
-     *
-     * @param \AppBundle\Entity\Clients $attorney
-     *
-     * @return ClientsLegal
-     */
-    public function setAttorney(\AppBundle\Entity\Clients $attorney = null) {
-        $this->attorney = $attorney;
-
-        return $this;
-    }
-
-    /**
-     * Get attorney
-     *
-     * @return \AppBundle\Entity\Clients
-     */
-    public function getAttorney() {
-        return $this->attorney;
-    }
-
-    /**
      * Set values dinamicaly
      *
      * @return integer
@@ -526,4 +504,28 @@ class LegalClient {
         }
     }
 
+
+    /**
+     * Set attorney
+     *
+     * @param \AppBundle\Entity\IndividualClient $attorney
+     *
+     * @return LegalClient
+     */
+    public function setAttorney(\AppBundle\Entity\IndividualClient $attorney = null)
+    {
+        $this->attorney = $attorney;
+
+        return $this;
+    }
+
+    /**
+     * Get attorney
+     *
+     * @return \AppBundle\Entity\IndividualClient
+     */
+    public function getAttorney()
+    {
+        return $this->attorney;
+    }
 }
