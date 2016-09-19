@@ -64,7 +64,7 @@ class IndividualClient {
     private $email;
 
     /**
-     * @ORM\Column(type="integer", length=24, nullable=true)
+     * @ORM\Column(type="string", length=24, nullable=true)
      */
     private $social_number;
 
@@ -274,28 +274,6 @@ class IndividualClient {
     }
 
     /**
-     * Set socialNumber
-     *
-     * @param integer $socialNumber
-     *
-     * @return Clients
-     */
-    public function setSocialNumber($socialNumber) {
-        $this->social_number = $socialNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get socialNumber
-     *
-     * @return integer
-     */
-    public function getSocialNumber() {
-        return $this->social_number;
-    }
-
-    /**
      * Set accountNumber
      *
      * @return Clients
@@ -415,4 +393,28 @@ class IndividualClient {
         }
     }
 
+
+    /**
+     * Set socialNumber
+     *
+     * @param string $socialNumber
+     *
+     * @return IndividualClient
+     */
+    public function setSocialNumber($socialNumber)
+    {
+        $this->social_number = $socialNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get socialNumber
+     *
+     * @return string
+     */
+    public function getSocialNumber()
+    {
+        return $this->social_number;
+    }
 }
