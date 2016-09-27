@@ -22,3 +22,7 @@ clients_legal:
 cases:
     type: rest
     resource: AppBundle\Controller\CasesController
+    
+calendars:
+    type: rest
+    resource: AppBundle\Controller\CalendarController

@@ -18,7 +18,7 @@ Update database schema
 
 Generate Getters and Setters
 
-    php bin/console doctrine:generate:entities AppBundle/Entity/Product
+    php bin/console doctrine:generate:entities AppBundle/Entity/{{Entity}}
 
 Create initial user
 

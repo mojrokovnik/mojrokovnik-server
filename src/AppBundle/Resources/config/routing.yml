@@ -1,3 +1,0 @@
-demos:
-    type: rest
-    resource: AppBundle\Controller\DemoController
