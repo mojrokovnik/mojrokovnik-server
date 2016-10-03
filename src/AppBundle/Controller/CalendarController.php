@@ -92,7 +92,7 @@ class CalendarController extends FOSRestController {
         }
 
         if (isset($data['datetime'])) {
-            $calendar->setDatetime(\DateTime::createFromFormat('d-m-Y H:i', $data['datetime']));
+            $calendar->setDatetime(\DateTime::createFromFormat('m-d-Y H:i', $data['datetime']));
             unset($data['datetime']);
         }
 
@@ -143,7 +143,7 @@ class CalendarController extends FOSRestController {
 
         $view = array(
             'status' => 200,
-            'calendar_id' => $result->getId(),
+            'calendar' => $result,
             'message' => 'Calendar updated!'
         );
 
