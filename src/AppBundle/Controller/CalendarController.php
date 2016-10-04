@@ -92,7 +92,7 @@ class CalendarController extends FOSRestController {
         }
 
         if (isset($data['datetime'])) {
-            $calendar->setDatetime(\DateTime::createFromFormat('m-d-Y H:i', $data['datetime']));
+            $calendar->setDatetime(\DateTime::createFromFormat('d-m-Y H:i', $data['datetime']));
             unset($data['datetime']);
         }
 
@@ -124,9 +124,26 @@ class CalendarController extends FOSRestController {
     public function putCalendarAction($id, Request $request) {
         $data = $request->request->all();
 
-        unset($data['client_individual']);
-        unset($data['client_legal']);
-        unset($data['cases']);
+        if (isset($data['client_individual'])) {
+            $client = $this->getBaseManager()
+                    ->get('AppBundle:IndividualClient', $data['client_individual'], $this->getLoggedUser());
+
+            $data['client_individual'] = $client;
+        }
+
+        if (isset($data['client_legal'])) {
+            $client = $this->getBaseManager()
+                    ->get('AppBundle:LegalClient', $data['client_legal'], $this->getLoggedUser());
+
+            $data['client_legal'] = $client;
+        }
+
+        if (isset($data['cases'])) {
+            $cases = $this->getBaseManager()
+                    ->get('AppBundle:Cases', $data['cases'], $this->getLoggedUser());
+
+            $data['cases'] = $cases;
+        }
 
         if (isset($data['datetime'])) {
             $data['datetime'] = \DateTime::createFromFormat('d-m-Y H:i', $data['datetime']);
