@@ -12,14 +12,6 @@ Run installation
 
     php composer install
 
-Update database schema 
-
-    php bin/console doctrine:schema:update --force
-
-Generate Getters and Setters
-
-    php bin/console doctrine:generate:entities AppBundle/Entity/{{Entity}}
-
 Create initial user
 
     php bin/console fos:user:create
@@ -39,6 +31,19 @@ Run application
 Before starting coding, make sure that your local system is properly configured for Symfony.
   
     php app/check.php
+
+3) Development
+----------------------------------
+
+For developing purposes there are few commands that you should know
+
+Update database schema 
+
+    php bin/console doctrine:schema:update --force
+
+Generate Getters and Setters
+
+    php bin/console doctrine:generate:entities AppBundle/Entity/{{Entity}}
 
 
 3) Mojrokovnik server comes pre-configured with the following bundles:

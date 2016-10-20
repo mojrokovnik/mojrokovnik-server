@@ -23,6 +23,10 @@ cases:
     type: rest
     resource: AppBundle\Controller\CasesController
     
+documents:
+    type: rest
+    resource: AppBundle\Controller\DocumentsController
+    
 calendars:
     type: rest
     resource: AppBundle\Controller\CalendarController

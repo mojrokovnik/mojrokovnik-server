@@ -19,8 +19,13 @@ class UserController extends FOSRestController {
         $manipulator = $this->get('fos_user.util.user_manipulator');
         $manipulator->create($data['username'], $data['password'], $data['email'], null, null);
 
+        $user = $this->get('fos_user.user_manager')->findUserByEmail($data['email']);
+        $urltoken = $user->getConfirmationToken();
+//        $url = $this->generateUrl('fos_user_registration_confirm', array('token' => $urltoken), true);
+
         $view = array(
             'status' => 200,
+            'url' => $urltoken,
             'message' => 'New user created!'
         );
 

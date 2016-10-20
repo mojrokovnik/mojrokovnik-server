@@ -28,9 +28,28 @@ class BaseManager {
     }
 
     /**
+     * Get specific data from database by parameters
+     * 
+     * @param $repo Name of repo where to look
+     * @param $param {Array} Parameters to match
+     * 
+     * @retun {Object} Data
+     * 
+     */
+    public function getBy($repo, $param, $user) {
+        $param['user'] = $user->getId();
+
+        $obj = $this->em
+                ->getRepository($repo)
+                ->findBy($param);
+
+        return $obj;
+    }
+
+    /**
      * Get specific data from database
      * 
-     * @param $repo Name of repo whete to look
+     * @param $repo Name of repo where to look
      * @param $id Identifier
      * 
      * @retun {Object} Data
