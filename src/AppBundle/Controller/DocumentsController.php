@@ -71,13 +71,13 @@ class DocumentsController extends FOSRestController {
                 ->get('AppBundle:Cases', $slug, $this->getLoggedUser());
 
         $document->setCases($case);
-        
+
         $result = $this->getBaseManager()
                 ->set($document, $data, $this->getLoggedUser());
 
         $view = array(
             'status' => 200,
-            'documents' => $result,
+            'document' => $result,
             'message' => 'New document added to database!'
         );
 
@@ -100,6 +100,8 @@ class DocumentsController extends FOSRestController {
      */
     public function putCasesDocumentsAction($slug, $id, Request $request) {
         $data = $request->request->all();
+
+        unset($data['cases']);
 
         $result = $this->getBaseManager()
                 ->update($data, 'AppBundle:Documents', $id, $this->getLoggedUser());
