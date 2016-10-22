@@ -129,6 +129,8 @@ class CalendarController extends FOSRestController {
                     ->get('AppBundle:IndividualClient', $data['client_individual'], $this->getLoggedUser());
 
             $data['client_individual'] = $client;
+            $data['client_legal'] = NULL;
+            $data['cases'] = NULL;
         }
 
         if (isset($data['client_legal'])) {
@@ -136,6 +138,8 @@ class CalendarController extends FOSRestController {
                     ->get('AppBundle:LegalClient', $data['client_legal'], $this->getLoggedUser());
 
             $data['client_legal'] = $client;
+            $data['client_individual'] = NULL;
+            $data['cases'] = NULL;
         }
 
         if (isset($data['cases'])) {
@@ -143,6 +147,8 @@ class CalendarController extends FOSRestController {
                     ->get('AppBundle:Cases', $data['cases'], $this->getLoggedUser());
 
             $data['cases'] = $cases;
+            $data['client_legal'] = NULL;
+            $data['client_individual'] = NULL;
         }
 
         if (isset($data['datetime'])) {
