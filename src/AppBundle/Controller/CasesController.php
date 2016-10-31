@@ -68,19 +68,13 @@ class CasesController extends FOSRestController {
         $case = new Cases();
 
         if (isset($data['client_individual'])) {
-            $client = $this->getBaseManager()
+            $data['client_individual'] = $this->getBaseManager()
                     ->get('AppBundle:IndividualClient', $data['client_individual'], $this->getLoggedUser());
-
-            unset($data['client_individual']);
-            $case->setClientIndividual($client);
         }
 
         if (isset($data['client_legal'])) {
-            $client = $this->getBaseManager()
+            $data['client_legal'] = $this->getBaseManager()
                     ->get('AppBundle:LegalClient', $data['client_legal'], $this->getLoggedUser());
-
-            unset($data['client_legal']);
-            $case->setClientLegal($client);
         }
 
         $result = $this->getBaseManager()
@@ -111,8 +105,15 @@ class CasesController extends FOSRestController {
     public function putCaseAction($id, Request $request) {
         $data = $request->request->all();
 
-        unset($data['client_individual']);
-        unset($data['client_legal']);
+        if (isset($data['client_individual'])) {
+            $data['client_individual'] = $this->getBaseManager()
+                    ->get('AppBundle:IndividualClient', $data['client_individual'], $this->getLoggedUser());
+        }
+
+        if (isset($data['client_legal'])) {
+            $data['client_legal'] = $this->getBaseManager()
+                    ->get('AppBundle:LegalClient', $data['client_legal'], $this->getLoggedUser());
+        }
 
         $result = $this->getBaseManager()
                 ->update($data, 'AppBundle:Cases', $id, $this->getLoggedUser());
