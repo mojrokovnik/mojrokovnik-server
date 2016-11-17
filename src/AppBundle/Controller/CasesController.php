@@ -81,7 +81,7 @@ class CasesController extends FOSRestController {
                 ->set($case, $data, $this->getLoggedUser());
 
         $view = array(
-            'status' => 200,
+            'status' => 201,
             'cases' => $result,
             'message' => 'New case added to database!'
         );

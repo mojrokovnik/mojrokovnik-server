@@ -63,7 +63,6 @@ doctrine:
 swiftmailer:
     transport:  "%mailer_transport%"
     host:       "%mailer_host%"
-    port:       "%mailer_port%"
     username:   "%mailer_user%"
     password:   "%mailer_password%"
     spool:     { type: memory }
@@ -79,12 +78,6 @@ fos_user:
     db_driver: orm
     firewall_name: api
     user_class: AppBundle\Entity\User
-
-    registration:
-        confirmation:
-            from_email:
-                address:        register@mojrokovnik.com
-                sender_name:    Mojrokovnik Registration
 
 fos_oauth_server:
     db_driver:           orm

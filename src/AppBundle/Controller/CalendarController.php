@@ -100,7 +100,7 @@ class CalendarController extends FOSRestController {
                 ->set($calendar, $data, $this->getLoggedUser());
 
         $view = array(
-            'status' => 200,
+            'status' => 201,
             'calendar' => $result,
             'message' => 'New calendar added to database!'
         );

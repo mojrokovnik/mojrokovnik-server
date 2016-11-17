@@ -12,8 +12,9 @@ security:
             security: false
 
         register_user:
-            pattern: ^/users/creates
+            pattern: ^/register
             security: false
+            anonymous: true
             
         api:
             pattern: ^/

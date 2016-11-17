@@ -76,7 +76,7 @@ class DocumentsController extends FOSRestController {
                 ->set($document, $data, $this->getLoggedUser());
 
         $view = array(
-            'status' => 200,
+            'status' => 201,
             'document' => $result,
             'message' => 'New document added to database!'
         );

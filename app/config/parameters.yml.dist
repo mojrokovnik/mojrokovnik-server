@@ -1,4 +1,6 @@
 parameters:
+    client_url: 'http://mojrokovnik.com'
+    client_confirmation: 'http://mojrokovnik.com/#/login'
     database_host: 127.0.0.1
     database_port: null
     database_name: mojrokovnik
