@@ -65,6 +65,7 @@ swiftmailer:
     host:       "%mailer_host%"
     username:   "%mailer_user%"
     password:   "%mailer_password%"
+    port:       "%mailer_port%"
     spool:     { type: memory }
 
 nelmio_api_doc: ~
@@ -92,7 +93,7 @@ fos_oauth_server:
 nelmio_cors:
     paths:
         '^/':
-            allow_origin: ['http://localhost:8100']
+            allow_origin: ['http://mojrokovnik.com', 'http://www.mojrokovnik.com', 'http://localhost:8100']
             allow_headers: ['Authorization', 'X-Requested-With', 'Content-Type', 'Accept', 'Origin', 'X-Custom-Auth']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
             max_age: 3600
