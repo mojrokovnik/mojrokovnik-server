@@ -97,3 +97,12 @@ nelmio_cors:
             allow_headers: ['Authorization', 'X-Requested-With', 'Content-Type', 'Accept', 'Origin', 'X-Custom-Auth']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
             max_age: 3600
+            
+vich_uploader:
+    db_driver: orm
+    
+    mappings:
+        document_file:
+            uri_prefix:         /Uploads/documents
+            upload_destination: '%kernel.root_dir%/Uploads/documents'
+            namer:              vich_uploader.namer_uniqid

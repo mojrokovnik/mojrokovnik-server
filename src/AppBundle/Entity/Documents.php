@@ -3,9 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
+ * @Vich\Uploadable
  * @ORM\Table(name="mojrokovnik_documents")
  */
 class Documents {
@@ -35,9 +38,19 @@ class Documents {
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=65535, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
+
+    /**
+     * @Vich\UploadableField(mapping="document_file", fileNameProperty="document_url")
+     */
+    private $document_file;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $document_url;
 
     /**
      * @ORM\Column(type="integer", options={"default" : 0}, nullable=true)
@@ -100,6 +113,48 @@ class Documents {
      */
     public function getContent() {
         return $this->content;
+    }
+
+    /**
+     * Set document_file
+     *
+     * @param string $document_file
+     *
+     * @return Documents
+     */
+    public function setDocumentFile(File $document_file = null) {
+        $this->document_file = $document_file;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getDocumentFile() {
+        return $this->document_file;
+    }
+
+    /**
+     * Set documentUrl
+     *
+     * @param string $documentUrl
+     *
+     * @return Documents
+     */
+    public function setDocumentUrl($documentUrl) {
+        $this->document_url = $documentUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get documentUrl
+     *
+     * @return string
+     */
+    public function getDocumentUrl() {
+        return $this->document_url;
     }
 
     /**

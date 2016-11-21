@@ -65,12 +65,17 @@ class DocumentsController extends FOSRestController {
      */
     public function postCasesDocumentsAction($slug, Request $request) {
         $data = $request->request->all();
+        $file = $request->files->all();
         $document = new Documents();
 
         $case = $this->getBaseManager()
                 ->get('AppBundle:Cases', $slug, $this->getLoggedUser());
 
         $document->setCases($case);
+
+        if (!empty($file)) {
+            $data = array_merge($data, $file);
+        }
 
         $result = $this->getBaseManager()
                 ->set($document, $data, $this->getLoggedUser());

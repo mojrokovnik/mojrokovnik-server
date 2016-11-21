@@ -46,7 +46,7 @@ Generate Getters and Setters
     php bin/console doctrine:generate:entities AppBundle/Entity/{{Entity}}
 
 
-3) Mojrokovnik server comes pre-configured with the following bundles:
+4) Mojrokovnik server comes pre-configured with the following bundles:
 ----------------------------------
 
   * FrameworkBundle - The core Symfony framework bundle
