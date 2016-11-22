@@ -45,6 +45,10 @@ Generate Getters and Setters
 
     php bin/console doctrine:generate:entities AppBundle/Entity/{{Entity}}
 
+Clear cache
+
+    php bin/console cache:clear
+
 
 4) Mojrokovnik server comes pre-configured with the following bundles:
 ----------------------------------

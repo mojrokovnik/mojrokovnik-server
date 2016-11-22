@@ -34,9 +34,10 @@ class DocumentsController extends FOSRestController {
     /**
      * Get specific document requested by ID
      * 
-     * Path: /cases/documents/{id}
+     * Path: /cases/{slug}/documents/{id}
      * Method: GET
      * 
+     * @param {int} $slug Case identifier
      * @param {int} $id Document identifier
      * @return {json} Document requested by ID
      * 
@@ -51,6 +52,26 @@ class DocumentsController extends FOSRestController {
         }
 
         return $this->handleView($this->view($document));
+    }
+
+    /**
+     * Get specific file of document requested by ID
+     * 
+     * Path: /cases/documents/{id}/file
+     * Method: GET
+     * 
+     * @param {int} $slug Case identifier
+     * @param {int} $id Document identifier
+     * @return {json} Document requested by ID
+     * 
+     * @throws NotFoundHttpException when requested document doesn't exist
+     */
+    public function getCasesDocumentFileAction($slug, $id) {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+        $document = $this->getBaseManager()
+                ->getOneBy('AppBundle:Documents', array('cases' => $slug, 'id' => $id), $this->getLoggedUser());
+
+        return $downloadHandler->downloadObject($document, $fileField = 'file', $objectClass = null, $document->getName());
     }
 
     /**

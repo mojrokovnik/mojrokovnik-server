@@ -43,14 +43,14 @@ class Documents {
     private $content;
 
     /**
-     * @Vich\UploadableField(mapping="document_file", fileNameProperty="document_url")
+     * @Vich\UploadableField(mapping="file", fileNameProperty="url")
      */
-    private $document_file;
+    private $file;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
      */
-    private $document_url;
+    private $url;
 
     /**
      * @ORM\Column(type="integer", options={"default" : 0}, nullable=true)
@@ -116,14 +116,14 @@ class Documents {
     }
 
     /**
-     * Set document_file
+     * Set file
      *
-     * @param string $document_file
+     * @param string $file
      *
      * @return Documents
      */
-    public function setDocumentFile(File $document_file = null) {
-        $this->document_file = $document_file;
+    public function setFile(File $file = null) {
+        $this->file = $file;
 
         return $this;
     }
@@ -131,19 +131,19 @@ class Documents {
     /**
      * @return File|null
      */
-    public function getDocumentFile() {
-        return $this->document_file;
+    public function getFile() {
+        return $this->file;
     }
 
     /**
      * Set documentUrl
      *
-     * @param string $documentUrl
+     * @param string $url
      *
      * @return Documents
      */
-    public function setDocumentUrl($documentUrl) {
-        $this->document_url = $documentUrl;
+    public function setUrl($url) {
+        $this->url = $url;
 
         return $this;
     }
@@ -153,8 +153,8 @@ class Documents {
      *
      * @return string
      */
-    public function getDocumentUrl() {
-        return $this->document_url;
+    public function getUrl() {
+        return $this->url;
     }
 
     /**
