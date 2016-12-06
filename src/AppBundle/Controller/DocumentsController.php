@@ -95,6 +95,7 @@ class DocumentsController extends FOSRestController {
         $document->setCases($case);
 
         if (!empty($file)) {
+            $document->setName($file['file']->getClientOriginalName());
             $data = array_merge($data, $file);
         }
 
