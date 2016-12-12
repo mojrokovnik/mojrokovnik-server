@@ -14,6 +14,14 @@ class RegisterController extends FOSRestController {
         $data = $request->request->all();
         $token = random_bytes(64);
 
+        if ($userManager->findUserByUsername($data['username'])) {
+            throw new HttpException(400, "Usename alrady exist");
+        }
+
+        if ($userManager->findUserByEmail($data['email'])) {
+            throw new HttpException(400, "Email already exist");
+        }
+
         $user = $userManager->createUser();
         $user->setUsername($data['username']);
         $user->setEmail($data['email']);
