@@ -39,7 +39,7 @@ class RegisterController extends FOSRestController {
 
     protected function sendConfirmationEmail($user) {
         $message = \Swift_Message::newInstance()
-                ->setSubject('Registration on Mojrokovnik Successful')
+                ->setSubject('Mojrokovnik - Registracija uspešna')
                 ->setFrom('register@mojrokovnik.com')
                 ->setTo($user->getEmail())
                 ->setBody($this->renderView('Emails/registration.html.twig', array(
